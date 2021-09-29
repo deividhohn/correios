@@ -30,4 +30,38 @@ class Correios{
 
     }
 
+    /**
+     * Método responsavel por calular o frete
+     * @param string $codigoServico
+     * @param string $cepOrigem
+     * @param string $cepDestino
+     * @param float $peso
+     * @param integer $formato
+     * @param integer $comprimento
+     * @param integer $altura
+     * @param integer $largura
+     * @param integer $diamentro
+     * @param string $maoPropria
+     * @param integer $valorDeclarado
+     * @param string $avisoRecebimento
+     * @return object //Retorna uma instancia do xml Objeto.
+     */
+
+
+
+    public function calcularFrete(  $codigoServico,
+                                    $cepOrigem,
+                                    $cepDestino,
+                                    $peso,
+                                    $formato,
+                                    $comprimento,
+                                    $altura,
+                                    $largura,
+                                    $diamentro = 0,
+                                    $maoPropria = false,
+                                    $valorDeclarado = 0,
+                                    $avisoRecebimento = false){
+
+    }
+
 }
