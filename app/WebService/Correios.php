@@ -117,14 +117,19 @@ class Correios{
         //query
         $query = http_build_query($parametros);
 
-    //var_dump($query);
+        //var_dump($query);exit;
+        //die ("parou aqui");exit;
 
         //Executa a consulta de frete
-        $resultado = $this->get('/calculador/CalcPrecoPrazo.asmx?'.$query);
+        $resultado = $this->get('/calculador/CalcPrecoPrazo.aspx?'.$query);
 
-        echo "<pre>";
+        //retorna os dados do frete calculado.
+        return $resultado ? $resultado->cServico : null;
+
+       /* echo "<pre>";
         print_r($resultado);
         echo "</pre>";exit;
+        */
         }
 
         /**
@@ -138,8 +143,26 @@ class Correios{
             //End Point completo
             $endpoint = self::URL_BASE.$resource;
 
-            var_dump($endpoint);
-            exit;
+            $curl = curl_init ();
+
+            curl_setopt_array($curl,[
+                CURLOPT_URL => $endpoint,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_CUSTOMREQUEST => 'GET'
+            ]);
+
+            $response = curl_exec($curl);
+
+            curl_close($curl);
+
+            // Retorna o XML instanciado
+
+            return strlen($response) ? simplexml_load_string($response) : null;
+
+           // print_r($response);exit;
+
+            //var_dump($endpoint);
+           // exit;
 
     }
 

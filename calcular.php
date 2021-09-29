@@ -9,9 +9,9 @@ use \App\WebService\Correios;
 $obCorreios = new correios();
 
 
-$codigoServico = Correios::SERVICO_SEDEX_10;
-$cepOrigem = "89809557";
-$cepDestino = "89700973";
+$codigoServico = Correios::SERVICO_PAC;
+$cepOrigem = "89812451";
+$cepDestino = "88060232";
 $peso = 1;
 $formato = Correios::FORMATO_CAIXA_PACOTE;
 $comprimento = 15;
@@ -22,6 +22,8 @@ $maoPropria = false;
 $valorDeclarado = 0;
 $avisoRecebimento = false;
 
+
+$time_start = microtime(true);
 $frete = $obCorreios->calcularFrete(
                                     $codigoServico,
                                     $cepOrigem,
@@ -36,4 +38,34 @@ $frete = $obCorreios->calcularFrete(
                                     $valorDeclarado,
                                     $avisoRecebimento);
 
+$time_end = microtime(true);
+$totaltime = $time_end - $time_start;
+// Verifica o resultado 
+
+
+if (!$frete){
+    die('Problemas ao calcular o frete');
+}
+
+//Verifica o erro da posição msgerro
+if (strlen($frete->MsgErro)){
+    die ('Erro .$frete->MsgErro');
+}
+
+// Imprime os dados da consulta.
+
+echo "Cep Origem".$cepOrigem."\n";
+echo "Cep destino".$cepDestino."\n";
+echo "Valor".$frete->Valor."\n";
+echo "Prazo".$frete->PrazoEntrega."\n";
+echo "Codigo serviço". $frete->Codigo."\n";
+
+print_r("\n");
+echo 'Tempoo de resposta da API foi dê: ' . $totaltime;
+print_r("\n\n");
+
+/*
+echo"<pre>";
 print_r($frete);
+echo"</pre>";exit;
+*/
