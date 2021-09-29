@@ -12,7 +12,7 @@ $obCorreios = new correios();
 $codigoServico = Correios::SERVICO_PAC;
 $cepOrigem = "89812451";
 $cepDestino = "88060232";
-$peso = 1;
+$peso = 5;
 $formato = Correios::FORMATO_CAIXA_PACOTE;
 $comprimento = 15;
 $altura = 15;
@@ -56,8 +56,8 @@ if (strlen($frete->MsgErro)){
 
 echo "Cep Origem".$cepOrigem."\n";
 echo "Cep destino".$cepDestino."\n";
-echo "Valor".$frete->Valor."\n";
-echo "Prazo".$frete->PrazoEntrega."\n";
+echo "Valor" .$frete->Valor."\n";
+echo "Prazo de entrega".$frete->PrazoEntrega."\n";
 echo "Codigo serviço". $frete->Codigo."\n";
 
 print_r("\n");
